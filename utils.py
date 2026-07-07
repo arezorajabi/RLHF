@@ -144,6 +144,7 @@ def get_loss_objective(loss: str, **kwargs) -> nn.Module:
 def create_dataset(cfg: Config) -> ProceduralDataset:
     """Create the training dataset from config."""
     specs = [DatasetSpec(name=s.name, weight=s.weight, config=s.config) for s in cfg.data.specs]
+    # print(f"[bold cyan]Creating dataset {specs[0].name} with {len(specs)} specs and size {cfg.data.size}...[/bold cyan]")
     return rg.create_dataset("composite", size=cfg.data.size, seed=cfg.seed, datasets=specs)
 
 

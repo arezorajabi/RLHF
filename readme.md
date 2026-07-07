@@ -6,6 +6,8 @@ A flexible and efficient implementation of Reinforcement Learning from Human Fee
 
 This project implements various state-of-the-art policy gradient optimization algorithms including REINFORCE, PPO, GRPO, GSPO, CISPO, SAPO, DAPO, and MaxRL. It's designed for fine-tuning language models using reward signals and is based on the RLHF Book by Nathan Lambert.
 
+For a guided explanation of each loss function and its role in different training setups, see [docs/loss-methods-guide.md](docs/loss-methods-guide.md).
+
 **Credits:**
 - Original implementation by Zafir Stojanovski (@zafstojano)
 - Source: https://github.com/zafstojano/policy-gradients

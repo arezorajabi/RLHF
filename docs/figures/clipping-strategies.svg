@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+  <rect width="900" height="360" fill="#f8fafc"/>
+  <text x="450" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0f172a">How different losses control policy drift</text>
+
+  <rect x="50" y="80" width="240" height="220" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="170" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#1d4ed8">REINFORCE</text>
+  <line x1="90" y1="165" x2="250" y2="165" stroke="#2563eb" stroke-width="4"/>
+  <circle cx="170" cy="165" r="10" fill="#2563eb"/>
+  <text x="170" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#334155">Direct gradient step</text>
+
+  <rect x="330" y="80" width="240" height="220" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="450" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#15803d">PPO / GRPO</text>
+  <line x1="370" y1="155" x2="510" y2="155" stroke="#16a34a" stroke-width="4"/>
+  <line x1="370" y1="175" x2="510" y2="175" stroke="#16a34a" stroke-width="4"/>
+  <line x1="370" y1="195" x2="510" y2="195" stroke="#16a34a" stroke-width="4"/>
+  <text x="450" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#334155">Hard clipping around ratio = 1</text>
+
+  <rect x="610" y="80" width="240" height="220" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="730" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#b45309">SAPO</text>
+  <path d="M650 180 C680 140, 710 145, 730 170 C750 195, 770 200, 800 155" fill="none" stroke="#d97706" stroke-width="4"/>
+  <text x="730" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#334155">Smooth gate, softer updates</text>
+
+  <text x="450" y="330" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#475569">The main difference is how aggressively the update is controlled.</text>
+</svg>

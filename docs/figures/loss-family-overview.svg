@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320" viewBox="0 0 900 320">
+  <rect width="900" height="320" fill="#f8fafc"/>
+  <text x="450" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0f172a">Policy-gradient loop</text>
+  <rect x="70" y="90" width="170" height="80" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="155" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#1d4ed8">Prompt</text>
+  <text x="155" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#1d4ed8">+ samples</text>
+
+  <rect x="300" y="90" width="170" height="80" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="385" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#166534">Rewards</text>
+  <text x="385" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#166534">+ advantages</text>
+
+  <rect x="530" y="90" width="170" height="80" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="615" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#92400e">Loss</text>
+  <text x="615" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#92400e">objective</text>
+
+  <rect x="760" y="90" width="90" height="80" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="805" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#6d28d9">Update</text>
+
+  <path d="M240 130 L300 130" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M470 130 L530 130" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M700 130 L760 130" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="120" y="220" width="660" height="60" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="450" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#334155">Different losses change how the policy is updated, but the loop is the same.</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+</svg>
