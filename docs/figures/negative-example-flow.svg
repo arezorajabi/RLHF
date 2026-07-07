@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360">
+  <rect width="900" height="360" fill="#f8fafc"/>
+  <text x="450" y="44" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0f172a">From sampled completions to negative training signal</text>
+
+  <rect x="70" y="90" width="180" height="90" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="160" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#1d4ed8">Prompt</text>
+  <text x="160" y="154" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#1d4ed8">+ task context</text>
+
+  <rect x="310" y="90" width="180" height="90" rx="12" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+  <text x="400" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#991b1b">Sampled</text>
+  <text x="400" y="154" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#991b1b">completions</text>
+
+  <rect x="550" y="90" width="180" height="90" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="640" y="128" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#92400e">Reward /</text>
+  <text x="640" y="154" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#92400e">advantage</text>
+
+  <rect x="740" y="90" width="90" height="90" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="785" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#166534">Update</text>
+
+  <path d="M250 135 L310 135" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M490 135 L550 135" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M730 135 L740 135" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="170" y="240" width="560" height="70" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="450" y="278" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#334155">Lower-scoring outputs become negative examples that suppress bad behavior.</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+</svg>

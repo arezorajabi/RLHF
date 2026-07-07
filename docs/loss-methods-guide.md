@@ -2,6 +2,8 @@
 
 This guide explains the main policy-gradient losses used in this repository and when each one is a good fit. The implementations live in [loss.py](../loss.py).
 
+For a companion explanation of how negative examples are generated and used in the RLHF pipeline, see [negative-examples-guide.md](negative-examples-guide.md).
+
 ## 1. The big picture
 
 All of these methods optimize the same basic idea:
