@@ -1,7 +1,8 @@
 data:
   size: 3000
   specs:
-    - name: spell_backward
+    # - name: spell_backward
+    -name : algebra_equation
       weight: 1
       config:
         min_word_len: 3

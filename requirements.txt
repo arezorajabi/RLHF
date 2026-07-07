@@ -1,0 +1,16 @@
+torch
+transformers
+datasets
+accelerate
+trl
+peft
+safetensors
+sentencepiece
+numpy
+pandas
+scipy
+tqdm
+wandb
+evaluate
+tensordict
+reasoning_gym
