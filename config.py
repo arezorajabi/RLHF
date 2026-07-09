@@ -7,7 +7,7 @@
 from typing import Any
 
 import yaml
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 
 class DatasetSpec(BaseModel):
@@ -129,6 +129,17 @@ class Config(BaseModel):
     max_norm: float = 1.0
     seed: int = 42
     model_device_id: int = 0
+
+    # QLoRA compression / low-bit + LoRA training
+    qlora: bool = False
+    qlora_r: int = 8
+    qlora_alpha: int = 16
+    qlora_dropout: float = 0.0
+    qlora_target_modules: list[str] = Field(default_factory=lambda: ["q_proj", "v_proj"])
+    qlora_load_in_4bit: bool = True
+    qlora_4bit_quant_type: str = "nf4"
+    qlora_4bit_double_quant: bool = True
+    qlora_4bit_compute_dtype: str = "bfloat16"
 
     # Logging
     wandb_entity: str | None = None

@@ -80,7 +80,20 @@ def get_attn_implementation() -> str:
         return "sdpa"
 
 
-def load_model(model_name: str, device_map: Any, gradient_checkpointing: bool = True):
+def load_model(
+    model_name: str,
+    device_map: Any,
+    gradient_checkpointing: bool = True,
+    qlora: bool = False,
+    qlora_r: int = 8,
+    qlora_alpha: int = 16,
+    qlora_dropout: float = 0.0,
+    qlora_target_modules: list[str] | None = None,
+    qlora_load_in_4bit: bool = True,
+    qlora_4bit_quant_type: str = "nf4",
+    qlora_4bit_double_quant: bool = True,
+    qlora_4bit_compute_dtype: str = "bfloat16",
+):
     """Load model and tokenizer with automatic attention implementation selection."""
     attn_impl = get_attn_implementation()
     tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=False)
@@ -88,13 +101,61 @@ def load_model(model_name: str, device_map: Any, gradient_checkpointing: bool = 
     # Set it to eos_token to enable batch padding
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        device_map=device_map,
-        trust_remote_code=False,
-        attn_implementation=attn_impl,
-        torch_dtype=torch.bfloat16,
-    )
+
+    if qlora:
+        try:
+            from transformers import BitsAndBytesConfig
+            from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+        except ImportError as exc:
+            raise ImportError(
+                "QLoRA requires `peft` and `bitsandbytes` to be installed. "
+                "Install them with `pip install peft bitsandbytes`."
+            ) from exc
+
+        if not hasattr(torch, qlora_4bit_compute_dtype):
+            raise ValueError(
+                f"Unsupported qlora_4bit_compute_dtype: {qlora_4bit_compute_dtype}. "
+                "Use a valid torch dtype name like 'bfloat16' or 'float16'."
+            )
+        compute_dtype = getattr(torch, qlora_4bit_compute_dtype)
+
+        quantization_config = BitsAndBytesConfig(
+            load_in_4bit=qlora_load_in_4bit,
+            bnb_4bit_quant_type=qlora_4bit_quant_type,
+            bnb_4bit_use_double_quant=qlora_4bit_double_quant,
+            bnb_4bit_compute_dtype=compute_dtype,
+        )
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            device_map=device_map,
+            quantization_config=quantization_config,
+            trust_remote_code=False,
+            attn_implementation=attn_impl,
+        )
+        model = prepare_model_for_kbit_training(model)
+
+        if qlora_target_modules is None:
+            qlora_target_modules = ["q_proj", "v_proj"]
+
+        peft_config = LoraConfig(
+            task_type="CAUSAL_LM",
+            inference_mode=False,
+            r=qlora_r,
+            lora_alpha=qlora_alpha,
+            target_modules=qlora_target_modules,
+            lora_dropout=qlora_dropout,
+            bias="none",
+        )
+        model = get_peft_model(model, peft_config)
+    else:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            device_map=device_map,
+            trust_remote_code=False,
+            attn_implementation=attn_impl,
+            torch_dtype=torch.bfloat16,
+        )
+
     if gradient_checkpointing:
         model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
     return model, tokenizer
